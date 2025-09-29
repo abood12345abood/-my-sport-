@@ -1,0 +1,400 @@
+[index.html](https://github.com/user-attachments/files/22601818/index.html)
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>متجر التيشيرتات الرياضية - نسخة احترافية</title>
+<style>
+:root{
+  --bg: #0f1724;
+  --card: #0b1220;
+  --muted: #98a0b3;
+  --accent: #06b6d4;
+  --accent-2: #7c3aed;
+  --glass: rgba(255,255,255,0.04);
+  --glass-2: rgba(255,255,255,0.03);
+  --card-radius: 14px;
+  --max-width: 1400px;
+  --whatsapp-color: #25d366;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:Inter, "Segoe UI", Roboto, system-ui, Arial;background:var(--bg);color:#e6eef8;}
+body{padding:20px;display:flex;justify-content:center;}
+.container{width:100%;max-width:var(--max-width);}
+header.site-header{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding:14px;border-radius:12px;backdrop-filter: blur(6px);
+}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{
+  width:56px;height:56px;border-radius:12px;background:linear-gradient(45deg,var(--accent),var(--accent-2));
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;box-shadow:0 8px 30px rgba(0,0,0,0.6)
+}
+h1{font-size:20px;margin:0}
+.actions{display:flex;gap:10px;align-items:center}
+.search{
+  position:relative;background:var(--glass);padding:8px;border-radius:10px;display:flex;align-items:center;gap:8px;min-width:220px;
+}
+.search input{background:transparent;border:0;outline:none;color:var(--muted);width:160px}
+.btn{
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));border:0;color:#021028;padding:10px 14px;border-radius:10px;font-weight:600;cursor:pointer;
+  box-shadow:0 8px 30px rgba(7,89,107,0.12);transition:all .3s ease;
+}
+.btn:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(7,89,107,0.16);}
+.cart-btn{display:flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px 12px;border-radius:10px;cursor:pointer;}
+.cart-count{background:#ff3860;color:white;padding:4px 8px;border-radius:999px;font-weight:700;font-size:13px;}
+.hero{display:flex;gap:18px;align-items:center;margin:20px 0;padding:18px;border-radius:12px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));transition:all .3s;}
+.hero-left{flex:1}
+.hero-right{width:350px;min-width:250px;position:relative;overflow:hidden;border-radius:12px;}
+.hero h2{font-size:28px;margin-bottom:8px}
+.pill{display:inline-block;background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;font-weight:600;color:var(--muted);margin-bottom:12px}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;}
+.card{
+  background:linear-gradient(180deg,var(--glass),var(--glass-2));
+  border-radius:var(--card-radius);padding:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);
+  display:flex;flex-direction:column;gap:10px;transition:all .3s ease;
+}
+.card:hover{transform:translateY(-8px);box-shadow:0 30px 50px rgba(2,6,23,0.6);}
+.image-wrap{position:relative;border-radius:10px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);}
+.image-wrap img{width:100%;display:block;height:240px;object-fit:cover;transition:all .5s ease;}
+.card:hover .image-wrap img{transform:scale(1.06);}
+.slider-controls{position:absolute;left:10px;right:10px;top:50%;transform:translateY(-50%);display:flex;justify-content:space-between;pointer-events:none;}
+.slider-btn{pointer-events:auto;background:rgba(0,0,0,0.45);border:0;color:white;padding:8px;border-radius:999px;cursor:pointer;}
+.meta{display:flex;justify-content:space-between;align-items:center;gap:8px;}
+.title{font-weight:700}
+.price{font-weight:800;color:var(--accent)}
+.line{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.04),transparent);margin:6px 0;border-radius:4px}
+.controls{display:flex;gap:8px;align-items:center}
+.add-btn{flex:1}
+.fav{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px;border-radius:10px;cursor:pointer}
+.big-card{border-radius:12px;overflow:hidden;position:relative;}
+.big-card img{width:100%;height:140px;object-fit:cover;display:block;}
+.badge{position:absolute;top:12px;left:12px;background:linear-gradient(90deg,var(--accent-2),var(--accent));padding:8px 12px;border-radius:999px;font-weight:800}
+.modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);z-index:9999;padding:20px;display:none;}
+.modal-card{width:100%;max-width:720px;background:linear-gradient(180deg,#021022, #061426);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.04)}
+.close{position:absolute;right:18px;top:18px;background:transparent;border:0;color:#fff;font-size:22px;cursor:pointer}
+.cart-list{max-height:320px;overflow:auto;margin-bottom:12px}
+.cart-item{display:flex;gap:12px;align-items:center;padding:8px;border-radius:8px;background:rgba(255,255,255,0.02);margin-bottom:8px}
+.cart-item img{width:64px;height:64px;object-fit:cover;border-radius:8px}
+.qty{display:flex;gap:6px;align-items:center}
+.icon-btn{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:6px;border-radius:8px;cursor:pointer}
+label{font-size:13px;color:var(--muted);display:block;margin-bottom:6px}
+input,textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#e6eef8;outline:none}
+textarea{min-height:100px;resize:vertical}
+.actions-row{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
+.fade-up{opacity:0;transform:translateY(18px);transition:all .6s ease;}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+@media (max-width:900px){
+  .hero{flex-direction:column;align-items:stretch;}
+  .hero-right{width:100%;}
+}
+@media (max-width:600px){
+  header.site-header{flex-direction:column;align-items:flex-start;gap:12px}
+  .search input{width:120px}
+  .image-wrap img{height:200px}
+}
+
+/* WhatsApp fixed button */
+#whatsapp-btn{
+  position:fixed;bottom:20px;right:20px;width:60px;height:60px;background:var(--whatsapp-color);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.4);z-index:99999;
+}
+#whatsapp-btn img{width:32px;height:32px;}
+#whatsapp-btn:hover{transform:scale(1.1);transition:.3s;}
+</style>
+</head>
+<body>
+<div class="container">
+<header class="site-header">
+  <div class="brand">
+    <div class="logo">TS</div>
+    <div>
+      <h1>متجر التيشيرتات الرياضية</h1>
+      <div style="color:var(--muted);font-size:13px">اختر ناديك، أضف للسلة وادفع عند الاستلام</div>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.35-4.35" stroke="#9fb6c4" stroke-width="2" stroke-linecap="round"/></svg>
+      <input placeholder="ابحث عن نادي أو تيشيرت..." id="search"/>
+    </div>
+    <button class="btn" id="explore">تسوق الآن</button>
+    <button class="cart-btn" id="cart-btn"><span>السلة</span><span class="cart-count" id="cart-count">0</span></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="pill">العروض المحدودة</div>
+    <h2>تيشيرتات رسمية وجاهزة للتوصيل</h2>
+    <p style="color:var(--muted);margin-top:6px">نسخة فاخرة تصميم عصري، صور قابلة للتبديل، وتجربة شراء سلسة.</p>
+    <div style="margin-top:12px;display:flex;gap:10px">
+      <button class="btn" id="explore2">اطلب الآن</button>
+      <button class="btn" id="contact" style="background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted)">اتصل بنا</button>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="big-card fade-up" id="featured">
+      <img src="https://i.imgur.com/your1.jpg" alt="featured" id="hero-image">
+      <div style="padding:10px">
+        <div class="badge">الأكثر مبيعاً</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+          <div style="font-weight:800">تيشيرت نادي الهلال</div>
+          <div style="font-weight:800;color:var(--accent)">12500 ريال</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main>
+<section style="margin-top:22px">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+    <h3 style="margin:0">منتجاتنا</h3>
+    <div style="color:var(--muted)">عرض <strong id="visible-count">8</strong> نتيجة</div>
+  </div>
+  <div class="products-grid" id="products"></div>
+</section>
+</main>
+</div>
+
+<!-- CART MODAL -->
+<div id="cart-modal" class="modal">
+  <div class="modal-card">
+    <button class="close" id="close-cart">×</button>
+    <h2>السلة</h2>
+    <div class="cart-list" id="cart-items"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+      <div style="color:var(--muted)">المجموع</div>
+      <div style="font-weight:800" id="cart-total">0 ريال</div>
+    </div>
+    <div class="actions-row">
+      <button class="btn" id="proceed">متابعة للطلب</button>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div id="checkout-modal" class="modal">
+  <div class="modal-card">
+    <button class="close" id="close-checkout">×</button>
+    <h2>تفاصيل التوصيل</h2>
+    <form id="order-form">
+      <label>الاسم الكامل</label>
+      <input id="customer-name" name="name" required />
+      <label>رقم الهاتف</label>
+      <input id="customer-phone" name="phone" type="tel" required />
+      <label>العنوان (تفصيلي)</label>
+      <textarea id="customer-address" name="message" required></textarea>
+      <input type="hidden" id="time" name="time">
+      <input type="hidden" name="title" value="طلب تيشيرت">
+      <input type="hidden" name="email" value="your@email.com">
+
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <label style="flex:1">
+          <div style="color:var(--muted);font-size:13px">طريقة الدفع</div>
+          <select id="payment-method" name="payment">
+            <option>الدفع عند الاستلام</option>
+          </select>
+        </label>
+        <label style="width:140px">
+          <div style="color:var(--muted);font-size:13px">إجمالي (تقريبي)</div>
+          <div style="font-weight:800;color:var(--accent)" id="checkout-total">0 ريال</div>
+        </label>
+      </div>
+
+      <div class="actions-row">
+        <button class="btn" type="submit">تأكيد الطلب</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- WhatsApp Button -->
+<div id="whatsapp-btn" onclick="window.open('https://wa.me/770215380','_blank')">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"/>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+emailjs.init('4vTUa1-O1SmB7hPPZ');
+
+/* ====== بيانات المنتجات ====== */
+const PRICE = 12500;
+const PRODUCTS = [
+  { id: 'club1', name: 'نادي الهلال', images: ['https://www2.0zz0.com/2025/09/26/12/618480151.jpeg','https://i.imgur.comhttps://www2.0zz0.com/2025/09/26/12/618480151.jpeg/your2.jpg'], price: PRICE },
+  { id: 'club2', name: 'نادي النصر', images: ['https://i.imgur.com/your3.jpg','https://i.imgur.com/your4.jpg'], price: PRICE },
+  { id: 'club3', name: 'نادي الاتحاد', images: ['https://i.imgur.com/your5.jpg','https://i.imgur.com/your6.jpg'], price: PRICE },
+  { id: 'club4', name: 'نادي الأهلي', images: ['https://i.imgur.com/your7.jpg','https://i.imgur.com/your8.jpg'], price: PRICE },
+  { id: 'club5', name: 'نادي برشلونة', images: ['https://i.imgur.com/your9.jpg','https://i.imgur.com/your10.jpg'], price: PRICE },
+  { id: 'club6', name: 'نادي ريال مدريد', images: ['https://i.imgur.com/your11.jpg','https://i.imgur.com/your12.jpg'], price: PRICE },
+];
+
+/* ====== عناصر DOM ====== */
+const productsEl = document.getElementById('products');
+const cartBtn = document.getElementById('cart-btn');
+const cartCountEl = document.getElementById('cart-count');
+const visibleCountEl = document.getElementById('visible-count');
+const cartModal = document.getElementById('cart-modal');
+const closeCart = document.getElementById('close-cart');
+const cartItemsEl = document.getElementById('cart-items');
+const cartTotalEl = document.getElementById('cart-total');
+const proceedBtn = document.getElementById('proceed');
+
+const checkoutModal = document.getElementById('checkout-modal');
+const closeCheckout = document.getElementById('close-checkout');
+const orderForm = document.getElementById('order-form');
+const checkoutTotalEl = document.getElementById('checkout-total');
+
+const searchInput = document.getElementById('search');
+const exploreBtns = document.querySelectorAll('#explore, #explore2');
+
+function loadCart(){ return JSON.parse(localStorage.getItem('cart')||'[]'); }
+function saveCart(cart){ localStorage.setItem('cart', JSON.stringify(cart)); updateCartUI(); }
+function addToCart(id){ const cart = loadCart(); const it = cart.find(x=>x.id===id); if(it) it.qty+=1; else cart.push({id,qty:1}); saveCart(cart); pulseCart(); }
+function removeFromCart(id){ let cart = loadCart().filter(i=>i.id!==id); saveCart(cart); }
+function changeQty(id,qty){ const cart = loadCart(); const it = cart.find(x=>x.id===id); if(!it) return; it.qty = Math.max(1, qty); saveCart(cart); }
+function clearCart(){ localStorage.removeItem('cart'); updateCartUI(); }
+
+function renderProducts(list = PRODUCTS){
+  productsEl.innerHTML = '';
+  visibleCountEl.textContent = list.length;
+  list.forEach(p=>{
+    const card = document.createElement('article');
+    card.className = 'card fade-up';
+    card.innerHTML = `
+      <div class="image-wrap">
+        <img loading="lazy" src="${p.images[0]}" data-index="0" data-id="${p.id}" alt="${p.name}">
+        <div class="slider-controls">
+          <button class="slider-btn" data-dir="-1" data-id="${p.id}">‹</button>
+          <button class="slider-btn" data-dir="1" data-id="${p.id}">›</button>
+        </div>
+      </div>
+      <div class="meta">
+        <div>
+          <div class="title">${p.name}</div>
+          <div style="color:var(--muted);font-size:13px;margin-top:4px">تيشيرت رسمي</div>
+        </div>
+        <div class="price">${p.price} ريال</div>
+      </div>
+      <div class="line"></div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button class="btn add-btn" data-add="${p.id}">أضف للسلة</button>
+        <button class="fav icon-btn" title="إضافة للمفضلة">♡</button>
+      </div>
+    `;
+    productsEl.appendChild(card);
+  });
+
+  // events
+  productsEl.querySelectorAll('button[data-add]').forEach(b=>{ b.addEventListener('click', ()=> addToCart(b.dataset.add)); });
+  productsEl.querySelectorAll('.slider-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const id = btn.dataset.id;
+      const dir = Number(btn.dataset.dir);
+      const img = productsEl.querySelector(`img[data-id="${id}"]`);
+      const product = PRODUCTS.find(x=>x.id===id);
+      let idx = Number(img.dataset.index);
+      idx = (idx + dir + product.images.length) % product.images.length;
+      img.dataset.index = idx;
+      img.src = product.images[idx];
+    });
+  });
+
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){ en.target.classList.add('visible'); obs.unobserve(en.target); }
+    });
+  }, {threshold:0.12});
+  productsEl.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+}
+
+function updateCartUI(){
+  const cart = loadCart();
+  const count = cart.reduce((s,i)=>s+i.qty,0);
+  cartCountEl.textContent = count;
+  cartItemsEl.innerHTML = '';
+  let total = 0;
+  cart.forEach(ci=>{
+    const p = PRODUCTS.find(x=>x.id===ci.id);
+    total += p.price * ci.qty;
+    const node = document.createElement('div');
+    node.className = 'cart-item';
+    node.innerHTML = `
+      <img src="${p.images[0]}" alt="${p.name}">
+      <div style="flex:1">
+        <div style="font-weight:700">${p.name}</div>
+        <div style="color:var(--muted);font-size:13px">${p.price} ريال</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;align-items:center">
+        <div class="qty">
+          <button class="icon-btn" data-dec="${ci.id}">−</button>
+          <div style="padding:6px 8px;border-radius:6px;background:rgba(255,255,255,0.02)">${ci.qty}</div>
+          <button class="icon-btn" data-inc="${ci.id}">+</button>
+        </div>
+        <button class="icon-btn" data-remove="${ci.id}">حذف</button>
+      </div>
+    `;
+    cartItemsEl.appendChild(node);
+  });
+  cartTotalEl.textContent = total + ' ريال';
+  checkoutTotalEl.textContent = total + ' ريال';
+  cartItemsEl.querySelectorAll('button[data-inc]').forEach(b=>b.addEventListener('click', ()=> { const id = b.dataset.inc; const cart = loadCart(); const it = cart.find(x=>x.id===id); it.qty+=1; saveCart(cart); }));
+  cartItemsEl.querySelectorAll('button[data-dec]').forEach(b=>b.addEventListener('click', ()=> { const id = b.dataset.dec; const cart = loadCart(); const it = cart.find(x=>x.id===id); it.qty = Math.max(1, it.qty-1); saveCart(cart); }));
+  cartItemsEl.querySelectorAll('button[data-remove]').forEach(b=>b.addEventListener('click', ()=> removeFromCart(b.dataset.remove)));
+}
+
+/* ====== modal ====== */
+cartBtn.addEventListener('click', ()=> { cartModal.style.display='flex';updateCartUI(); });
+closeCart.addEventListener('click', ()=> cartModal.style.display='none');
+proceedBtn.addEventListener('click', ()=> { cartModal.style.display='none'; checkoutModal.style.display='flex'; });
+closeCheckout.addEventListener('click', ()=> checkoutModal.style.display='none');
+
+/* ====== order form ====== */
+orderForm.addEventListener('submit',(e)=>{
+  e.preventDefault();
+  const name = document.getElementById('customer-name').value.trim();
+  const phone = document.getElementById('customer-phone').value.trim();
+  const address = document.getElementById('customer-address').value.trim();
+  const cart = loadCart();
+  if(!cart.length) return alert('السلة فارغة');
+  document.getElementById('time').value = new Date().toISOString();
+  const order = {id:'ORD'+Date.now(),name,phone,address,cart,total:cart.reduce((s,i)=>s+(PRODUCTS.find(p=>p.id===i.id).price*i.qty),0)};
+  
+  // إرسال EmailJS
+  emailjs.send('service_atiqa5c','template_8ipjwf3',{
+    from_name: name,
+    email: 'your@email.com',
+    message: address,
+    title: 'طلب تيشيرت',
+    time: new Date().toLocaleString(),
+    cart: JSON.stringify(cart),
+    total: order.total
+  }).then(()=>{ clearCart(); checkoutModal.style.display='none'; alert('تم تسجيل طلبك! سنتواصل معك لتأكيد التوصيل.'); },
+  (err)=>{ alert('حدث خطأ أثناء إرسال الطلب. تأكد من إعدادات EmailJS أو جرب لاحقًا.'); console.error(err); });
+});
+
+/* ====== search ====== */
+searchInput.addEventListener('input',()=>{ const q = searchInput.value.trim().toLowerCase(); renderProducts(q?PRODUCTS.filter(p=>p.name.toLowerCase().includes(q)):PRODUCTS); });
+
+function pulseCart(){ cartBtn.animate([{transform:'scale(1)'},{transform:'scale(1.06)'},{transform:'scale(1)'}],{duration:300}); }
+
+renderProducts();
+updateCartUI();
+document.querySelectorAll('#explore,#explore2').forEach(b=>b.addEventListener('click',()=>window.scrollTo({top:document.querySelector('.products-grid').offsetTop-20,behavior:'smooth'})));
+document.getElementById('featured').classList.add('visible');
+
+/* ====== Hero image slider every 5 sec ====== */
+let heroImages = [
+  'https://i.imgur.com/your1.jpg',
+  'https://i.imgur.com/your2.jpg',
+  'https://i.imgur.com/your3.jpg',
+  'https://i.imgur.com/your4.jpg'
+];
+let heroIdx = 0;
+setInterval(()=>{ heroIdx=(heroIdx+1)%heroImages.length; document.getElementById('hero-image').src = heroImages[heroIdx]; },5000);
+</script>
+</body>
+</html>
